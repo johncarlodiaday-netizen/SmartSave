@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartSave | Profile & Settings</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="nav-brand">
+            <img src="assets/wallet-svgrepo-com.svg" alt="SmartSave Logo" class="nav-logo">
+            <span>SmartSave</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"    class="nav-item home">Dashboard</a></li>
+            <li><a href="tracker.html"  class="nav-item tracker">Tracker</a></li>
+            <li><a href="history.html"  class="nav-item history">History</a></li>
+            <li><a href="insights.html" class="nav-item insights">Insights</a></li>
+            <li><a href="profile.html"  class="nav-item profile">Profile</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section class="card fade-up">
+            <span class="tip-tag">✦ Your Profile</span>
+            <h2>Profile &amp; Settings</h2>
+
+            <!-- Avatar + Name -->
+            <div class="profile-header" style="margin-top: 24px;">
+                <div class="avatar-wrap" onclick="cycleAvatar()" title="Click to change emoji">
+                    <div class="avatar-circle" id="avatar-display">😊</div>
+                    <div class="avatar-edit-badge">✏️</div>
+                </div>
+                <div class="profile-name-display" id="profile-name-display">Student</div>
+                <div class="profile-tagline" id="profile-tagline-display">SmartSave Member</div>
+            </div>
+
+            <!-- Live Stats -->
+            <div class="profile-stats">
+                <div class="profile-stat fade-up delay-1">
+                    <div class="profile-stat-value" id="stat-entries">0</div>
+                    <div class="profile-stat-label">Entries</div>
+                </div>
+                <div class="profile-stat fade-up delay-2">
+                    <div class="profile-stat-value" id="stat-saved">₱0</div>
+                    <div class="profile-stat-label">Total Saved</div>
+                </div>
+                <div class="profile-stat fade-up delay-3">
+                    <div class="profile-stat-value" id="stat-spent">₱0</div>
+                    <div class="profile-stat-label">Total Spent</div>
+                </div>
+            </div>
+
+            <!-- Edit Profile Fields -->
+            <div class="settings-section">
+                <div class="settings-label">👤 Edit Profile</div>
+                <div class="profile-field">
+                    <label for="input-name">Display Name</label>
+                    <input type="text" id="input-name" placeholder="e.g. Juan dela Cruz" maxlength="30">
+                </div>
+                <div class="profile-field">
+                    <label for="input-tagline">Tagline</label>
+                    <input type="text" id="input-tagline" placeholder="e.g. Saving for the future!" maxlength="40">
+                </div>
+                <div class="profile-field">
+                    <label for="input-budget-goal">Weekly Budget Goal (₱)</label>
+                    <input type="number" id="input-budget-goal" placeholder="e.g. 500">
+                </div>
+                <button class="btn-save-profile" id="save-profile-btn" onclick="saveProfile()">💾 Save Profile</button>
+            </div>
+
+            <!-- Settings Rows -->
+            <div class="settings-section">
+                <div class="settings-label">⚙️ App Settings</div>
+
+                <div class="settings-row fade-up delay-1" onclick="window.location.href='insights.html'">
+                    <div class="settings-icon">💡</div>
+                    <div class="settings-info">
+                        <strong>Financial Insights</strong>
+                        <span>Tips and guides for student budgeting</span>
+                    </div>
+                    <span class="settings-arrow">›</span>
+                </div>
+
+                <div class="settings-row fade-up delay-2" onclick="window.location.href='history.html'">
+                    <div class="settings-icon">📊</div>
+                    <div class="settings-info">
+                        <strong>Transaction History</strong>
+                        <span>View all your saved budget entries</span>
+                    </div>
+                    <span class="settings-arrow">›</span>
+                </div>
+
+                <div class="settings-row fade-up delay-3" onclick="window.location.href='terms.html'">
+                    <div class="settings-icon">📄</div>
+                    <div class="settings-info">
+                        <strong>Terms &amp; Privacy Policy</strong>
+                        <span>How your data is handled</span>
+                    </div>
+                    <span class="settings-arrow">›</span>
+                </div>
+
+                <!-- About — no arrow -->
+                <div class="settings-row fade-up delay-4" onclick="showAbout()">
+                    <div class="settings-icon">🗣️</div>
+                    <div class="settings-info">
+                        <strong>About SmartSave</strong>
+                        <span>Version 1.0 — ITEC50 Final Project</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Danger Zone -->
+            <div class="settings-section">
+                <div class="settings-label">⚠️ Danger Zone</div>
+                <div class="danger-zone">
+                    <h4>🗑️ Reset All Data</h4>
+                    <p>This will permanently delete your transaction history and profile settings. This action cannot be undone.</p>
+                    <button class="btn-reset" onclick="resetAllData()">🗑️ Delete All My Data</button>
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <footer style="text-align:center; padding: 28px 0 20px; position:relative; z-index:1;">
+        <p style="font-size:0.82rem; color:rgba(255,255,255,0.7);">
+            &copy; 2026 SmartSave &nbsp;&middot;&nbsp;
+            <a href="terms.html" style="color:rgba(255,255,255,0.9); font-weight:600; text-decoration:underline; text-underline-offset:3px;">Terms &amp; Privacy</a>
+        </p>
+    </footer>
+
+    <script src="theme.js"></script>
+    <script>
+        const PROFILE_KEY = 'smartsave_profile';
+        const STORAGE_KEY = 'save_history';
+
+        // Real emoji characters — NOT HTML entities
+        const avatarEmojis = ['😊','😀','🤩','😎','🤓','😄','🥰','😇','😁','🤑'];
+        let avatarIndex = 0;
+
+        // ── Load saved profile on page open ────────────────
+        function loadProfile() {
+            const p = JSON.parse(localStorage.getItem(PROFILE_KEY)) || {};
+
+            document.getElementById('input-name').value        = p.name  || '';
+            document.getElementById('input-tagline').value     = p.tagline || '';
+            document.getElementById('input-budget-goal').value = p.goal  || '';
+
+            document.getElementById('profile-name-display').textContent    = p.name    || 'Student';
+            document.getElementById('profile-tagline-display').textContent = p.tagline || 'SmartSave Member';
+
+            avatarIndex = typeof p.avatarIndex === 'number' ? p.avatarIndex : 0;
+            document.getElementById('avatar-display').textContent = avatarEmojis[avatarIndex];
+        }
+
+        // ── Save profile to localStorage ────────────────────
+        function saveProfile() {
+            const name    = document.getElementById('input-name').value.trim()    || 'Student';
+            const tagline = document.getElementById('input-tagline').value.trim() || 'SmartSave Member';
+            const goal    = document.getElementById('input-budget-goal').value;
+
+            const profile = { name, tagline, goal, avatarIndex };
+            localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+
+            // Update display immediately
+            document.getElementById('profile-name-display').textContent    = name;
+            document.getElementById('profile-tagline-display').textContent = tagline;
+
+            // Button feedback
+            const btn = document.getElementById('save-profile-btn');
+            btn.textContent = '✅ Saved!';
+            btn.style.opacity = '0.85';
+            setTimeout(() => {
+                btn.textContent = '💾 Save Profile';
+                btn.style.opacity = '1';
+            }, 1800);
+        }
+
+        // ── Cycle avatar emoji on click ─────────────────────
+        function cycleAvatar() {
+            avatarIndex = (avatarIndex + 1) % avatarEmojis.length;
+            document.getElementById('avatar-display').textContent = avatarEmojis[avatarIndex];
+        }
+
+        // ── Load live stats from history ────────────────────
+        function loadStats() {
+            const history = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+            let totalSaved = 0, totalSpent = 0;
+
+            history.forEach(function(item) {
+                totalSpent += item.spent;
+                totalSaved += (item.budget - item.spent);
+            });
+
+            document.getElementById('stat-entries').textContent = history.length;
+            document.getElementById('stat-saved').textContent   = '₱' + Math.max(0, totalSaved).toFixed(0);
+            document.getElementById('stat-spent').textContent   = '₱' + totalSpent.toFixed(0);
+        }
+
+        // ── Delete all data ─────────────────────────────────
+        function resetAllData() {
+            var confirmed = confirm('Delete ALL your SmartSave data including history and profile? This cannot be undone.');
+            if (confirmed) {
+                localStorage.removeItem(STORAGE_KEY);
+                localStorage.removeItem(PROFILE_KEY);
+                localStorage.removeItem('smartsave_theme');
+                alert('All data has been cleared. Starting fresh!');
+                window.location.reload();
+            }
+        }
+
+        // ── About SmartSave popup ───────────────────────────
+        function showAbout() {
+            alert('SmartSave v1.0\nITEC50 Final Project\n\nA student budget tracker built with HTML, CSS & JavaScript.\nAll data is stored locally on your device.\n\nDeveloped by:\n• Diaday John Carlo\n• Fenol Josh Noah\n• Reniva Kian Miguel\n• Vibar Samuel');
+        }
+
+        // ── Run on load ─────────────────────────────────────
+        loadProfile();
+        loadStats();
+    </script>
+</body>
+</html>

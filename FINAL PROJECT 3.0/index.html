@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartSave | Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="nav-brand">
+            <img src="assets/wallet-svgrepo-com.svg" alt="SmartSave Logo" class="nav-logo">
+            <span>SmartSave</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"    class="nav-item home">Dashboard</a></li>
+            <li><a href="tracker.html"  class="nav-item tracker">Tracker</a></li>
+            <li><a href="history.html"  class="nav-item history">History</a></li>
+            <li><a href="insights.html" class="nav-item insights">Insights</a></li>
+            <li><a href="profile.html"  class="nav-item profile">Profile</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+
+        <header class="hero-banner">
+            <span class="hero-badge">&#10022; Student Budget Companion</span>
+            <h1>Welcome, Student!</h1>
+            <p>Track spending, build savings habits, and discover where your allowance goes.</p>
+        </header>
+
+        <!-- Weekly goal progress bar (shown only if goal is set in profile) -->
+        <div id="goal-bar-wrap" style="display:none; background:var(--glass-bg); border-radius:18px; padding:20px 24px; margin-bottom:20px; box-shadow:var(--shadow-soft); border:1px solid var(--glass-border); animation: fadeUp 0.6s 0.15s both;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <span id="goal-bar-label" style="font-size:0.88rem; font-weight:700; color:var(--text-dark);">Weekly Goal</span>
+                <span id="goal-bar-pct" style="font-size:0.88rem; font-weight:800; color:var(--grad-1);">0%</span>
+            </div>
+            <div style="background:#e8eaf0; border-radius:50px; height:10px; overflow:hidden;">
+                <div id="goal-bar-fill" style="height:100%; border-radius:50px; width:0%; transition:width 1s cubic-bezier(0.34,1.56,0.64,1); background:var(--clr-tracker);"></div>
+            </div>
+        </div>
+
+        <div class="stats-row">
+            <div class="stat-card fade-up delay-1">
+                <span class="stat-icon">&#128176;</span>
+                <div class="stat-label">Recorded</div>
+                <div class="stat-value">0 entries</div>
+            </div>
+            <div class="stat-card fade-up delay-2">
+                <span class="stat-icon">&#128202;</span>
+                <div class="stat-label">Total Saved</div>
+                <div class="stat-value">&#8369;0</div>
+            </div>
+            <div class="stat-card fade-up delay-3">
+                <span class="stat-icon">&#129504;</span>
+                <div class="stat-label">Total Spent</div>
+                <div class="stat-value">&#8369;0</div>
+            </div>
+        </div>
+
+        <div class="card fade-up delay-2">
+            <h2>Welcome to SmartSave</h2>
+            <p style="max-width: 600px; margin: 14px auto 0;">
+                SmartSave is your all-in-one <strong>student budget tracker</strong> &mdash; built to help you
+                log your allowance, monitor every peso you spend, and understand your financial habits
+                at a glance. Set up your <a href="profile.html" style="color:var(--grad-1); font-weight:700;">profile</a> to personalise your experience!
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-card blue fade-up delay-1">
+                    <span class="feature-emoji">&#128221;</span>
+                    <div class="feature-title">Record Transactions</div>
+                    <p class="feature-desc">Log your daily expenses against your budget in seconds. Every peso counts.</p>
+                </div>
+                <div class="feature-card green fade-up delay-2">
+                    <span class="feature-emoji">&#128194;</span>
+                    <div class="feature-title">View History</div>
+                    <p class="feature-desc">See a complete timeline of all your recorded entries, neatly organized.</p>
+                </div>
+                <div class="feature-card orange fade-up delay-3">
+                    <span class="feature-emoji">&#128161;</span>
+                    <div class="feature-title">Get Insights</div>
+                    <p class="feature-desc">Actionable money tips and saving strategies curated just for students.</p>
+                </div>
+                <div class="feature-card purple fade-up delay-4">
+                    <span class="feature-emoji">&#128274;</span>
+                    <div class="feature-title">Stays Private</div>
+                    <p class="feature-desc">All your data is saved locally on your browser &mdash; fully private, no sign-up needed.</p>
+                </div>
+            </div>
+
+            <a href="tracker.html" class="btn-cta">Start Tracking Now &rarr;</a>
+        </div>
+
+        <!-- Meet the Team -->
+        <div class="card fade-up" style="margin-top: 24px;">
+            <span class="tip-tag">✦ ITEC50 Final Project</span>
+            <h2>Meet the Team</h2>
+            <p style="max-width: 520px; margin: 10px auto 28px;">
+                The developers behind SmartSave &mdash; built with passion for ITEC50.
+            </p>
+
+            <div class="team-grid">
+                <div class="team-card fade-up delay-1">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, hsl(220,80%,60%), hsl(260,70%,60%));">D</div>
+                    <div class="team-name">Diaday John Carlo</div>
+                    <div class="team-role">💻 Developer</div>
+                </div>
+                <div class="team-card fade-up delay-2">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, hsl(150,70%,45%), hsl(190,80%,50%));">F</div>
+                    <div class="team-name">Fenol Josh Noah</div>
+                    <div class="team-role">🎨 Designer</div>
+                </div>
+                <div class="team-card fade-up delay-3">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, hsl(35,90%,55%), hsl(15,90%,55%));">R</div>
+                    <div class="team-name">Reniva Kian Miguel</div>
+                    <div class="team-role">📈 Analyst</div>
+                </div>
+                <div class="team-card fade-up delay-4">
+                    <div class="team-avatar" style="background: linear-gradient(135deg, hsl(280,70%,60%), hsl(320,70%,55%));">V</div>
+                    <div class="team-name">Vibar Samuel</div>
+                    <div class="team-role">📝 Documenter</div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <footer style="text-align:center; padding: 28px 0 20px; position:relative; z-index:1;">
+        <p style="font-size:0.82rem; color:rgba(255,255,255,0.7);">
+            &copy; 2026 SmartSave &nbsp;&middot;&nbsp;
+            <a href="terms.html" style="color:rgba(255,255,255,0.9); font-weight:600; text-decoration:underline; text-underline-offset:3px;">Terms &amp; Privacy</a>
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="theme.js"></script>
+    <script src="profile-loader.js"></script>
+</body>
+</html>

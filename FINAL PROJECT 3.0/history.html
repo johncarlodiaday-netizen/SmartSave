@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartSave | History</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <nav class="main-nav">
+        <div class="nav-brand">
+            <img src="assets/wallet-svgrepo-com.svg" alt="SmartSave Logo" class="nav-logo">
+            <span>SmartSave</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html"    class="nav-item home">Dashboard</a></li>
+            <li><a href="tracker.html"  class="nav-item tracker">Tracker</a></li>
+            <li><a href="history.html"  class="nav-item history">History</a></li>
+            <li><a href="insights.html" class="nav-item insights">Insights</a></li>
+            <li><a href="profile.html"  class="nav-item profile">Profile</a></li>
+        </ul>
+    </nav>
+
+    <main class="container">
+        <section class="card fade-up">
+            <span class="tip-tag">&#10022; Your Records</span>
+            <h2>Transaction History</h2>
+            <p style="margin-bottom: 28px;">Review all your saved budget entries below.</p>
+
+            <button class="btn-reset" onclick="resetHistory()">&#128465; Reset All History</button>
+
+            <div id="history-list" class="history-grid">
+                <!-- Entries injected by script.js -->
+            </div>
+        </section>
+    </main>
+
+    <footer style="text-align:center; padding: 28px 0 20px; position:relative; z-index:1;">
+        <p style="font-size:0.82rem; color:rgba(255,255,255,0.7);">
+            &copy; 2026 SmartSave &nbsp;&middot;&nbsp;
+            <a href="terms.html" style="color:rgba(255,255,255,0.9); font-weight:600; text-decoration:underline; text-underline-offset:3px;">Terms &amp; Privacy</a>
+        </p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="theme.js"></script>
+    <script src="profile-loader.js"></script>
+</body>
+</html>
